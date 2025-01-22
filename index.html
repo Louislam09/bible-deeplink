@@ -135,6 +135,7 @@
       <button class="button" onclick="openApp()">Abrir la App</button>
     </div>
 
+    <!-- Modal -->
     <div id="modal" class="modal">
       <div class="modal-content">
         <h2>¡App no encontrada!</h2>
@@ -142,15 +143,23 @@
           No tienes la app instalada. Descárgala ahora para explorar las
           escrituras.
         </p>
+        <a
+          href="https://play.google.com/store/apps/details?id=com.louislam09.bible"
+          >Ir a la Play Store</a
+        >
+        <button onclick="closeModal()">Cerrar</button>
       </div>
     </div>
 
     <script>
-      function openApp() {
+      function openApp(isAutoOpen = false) {
         const deepLink = 'sb-rv60://';
+        const fallbackURL =
+          'https://play.google.com/store/apps/details?id=com.louislam09.bible';
 
         window.location.href = deepLink;
 
+        if (isAutoOpen) return;
         setTimeout(() => {
           showModal();
         }, 1000);
@@ -159,13 +168,14 @@
       function showModal() {
         const modal = document.getElementById('modal');
         modal.classList.add('active');
-        setTimeout(() => {
-          const fallbackURL =
-            'https://play.google.com/store/apps/details?id=com.louislam09.bible';
-          window.location.href = fallbackURL;
-        }, 3000);
       }
-      window.onload = openApp;
+
+      function closeModal() {
+        const modal = document.getElementById('modal');
+        modal.classList.remove('active');
+      }
+
+      window.onload = () => openApp(true);
     </script>
   </body>
 </html>
