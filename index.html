@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Open Santa Escritura</title>
+    <link rel="icon" href="./assets/images/icon.png" type="image/png">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -77,13 +78,8 @@
       const deepLink = "sb-rv60://";
       const fallbackURL = "https://play.google.com/store/apps/details?id=com.louislam09.bible";
 
-      // Attempt to open the app
       window.location.href = deepLink;
 
-      // Redirect to the fallback after a delay
-      setTimeout(() => {
-        window.location.href = fallbackURL;
-      }, 1500);
     }
   </script>
 </body>
