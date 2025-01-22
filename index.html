@@ -3,29 +3,88 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LaEscritura: biblia + audio</title>
-  <script>
-    function openApp() {
-        const deepLink = "sb-rv60://";
-      const fallbackURL = "https://play.google.com/store/apps/details?id=com.louislam09.bible";
+  <title>Open Santa Escritura</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0c3e3d;
+      color: #ffffff;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
 
-    // Attempt to open the deep link
-    window.location.href = deepLink;
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+    }
 
-    // Redirect to fallback after a delay
-    setTimeout(() => {
-      window.location.href = fallbackURL;
-    }, 3000); // Wait 3 seconds
-  }
+    .logo {
+      max-width: 150px;
+      margin-bottom: 20px;
+    }
 
-  window.onload = openApp;
-  </script>
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 1rem;
+      color: #0c3e3d;
+      background-color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #e0e0e0;
+    }
+
+    .download-link {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #ffffff;
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <p>Opening the app...</p>
-  <p>If nothing happens, <a id="fallback-link" href="#">click here</a> to download the app.</p>
-  <noscript>
-    <p>Please enable JavaScript to use this page.</p>
-  </noscript>
+  <div class="container">
+    <img src="./assets/images/icon.png" alt="Santa Escritura Logo" class="logo">
+    <h1>Santa Escritura</h1>
+    <p>Explora versículos y sumérgete en una experiencia espiritual única.</p>
+    <button class="button" onclick="openApp()">Abrir la App</button>
+    <a href="https://play.google.com/store/apps/details?id=com.louislam09.bible" class="download-link">¿No tienes la app? Descárgala aquí.</a>
+  </div>
+
+  <script>
+    function openApp() {
+      const deepLink = "sb-rv60://";
+      const fallbackURL = "https://play.google.com/store/apps/details?id=com.louislam09.bible";
+
+      // Attempt to open the app
+      window.location.href = deepLink;
+
+      // Redirect to the fallback after a delay
+      setTimeout(() => {
+        window.location.href = fallbackURL;
+      }, 1500);
+    }
+  </script>
 </body>
 </html>
