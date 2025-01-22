@@ -1,181 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Open Santa Escritura</title>
-    <link rel="icon" href="./assets/images/icon.png" type="image/png" />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #0c3e3d;
-        color: #ffffff;
-        text-align: center;
-        margin: 0;
-        padding: 0;
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Santa Escritura - Deep Link</title>
+  <link rel="icon" href="./assets/images/icon.png" type="image/png">
+    <link rel="stylesheet" href="./style.css">
+  <script src="./main.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <img src="./assets/images/icon.png" alt="Santa Escritura Logo" class="logo">
+    <h1>Santa Escritura</h1>
+    <p>Selecciona una opción para continuar.</p>
+    <button class="button" id="open-app">Abrir la App</button>
+    <a href="https://play.google.com/store/apps/details?id=com.louislam09.bible" class="download-link">Descargar la App</a>
+  </div>
 
-      .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        padding: 20px;
-      }
-
-      .logo {
-        max-width: 150px;
-        margin-bottom: 20px;
-      }
-
-      h1 {
-        font-size: 2rem;
-        margin-bottom: 10px;
-      }
-
-      p {
-        font-size: 1rem;
-        margin-bottom: 20px;
-      }
-
-      .button {
-        display: inline-block;
-        padding: 15px 30px;
-        font-size: 1rem;
-        color: #0c3e3d;
-        background-color: #ffffff;
-        border: none;
-        border-radius: 5px;
-        text-decoration: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-
-      .button:hover {
-        background-color: #e0e0e0;
-      }
-
-      .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-        visibility: hidden;
-        opacity: 0;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-      }
-
-      .modal.active {
-        visibility: visible;
-        opacity: 1;
-      }
-
-      .modal-content {
-        background: #ffffff;
-        padding: 20px;
-        border-radius: 10px;
-        text-align: center;
-        color: #0c3e3d;
-        width: 80%;
-        max-width: 400px;
-      }
-
-      .modal-content h2 {
-        font-size: 1.5rem;
-        margin-bottom: 10px;
-      }
-
-      .modal-content p {
-        font-size: 1rem;
-        margin-bottom: 20px;
-      }
-
-      .modal-content a {
-        display: inline-block;
-        padding: 10px 20px;
-        color: #ffffff;
-        background-color: #0c3e3d;
-        border-radius: 5px;
-        text-decoration: none;
-        font-size: 1rem;
-        transition: background-color 0.3s ease;
-      }
-
-      .modal-content a:hover {
-        background-color: #055351;
-      }
-
-      .modal-content button {
-        margin-top: 10px;
-        font-size: 0.9rem;
-        color: #0c3e3d;
-        background: none;
-        border: none;
-        cursor: pointer;
-        text-decoration: underline;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <img
-        src="./assets/images/icon.png"
-        alt="Santa Escritura Logo"
-        class="logo"
-      />
-      <h1>Santa Escritura</h1>
-      <p>Explora versículos y sumérgete en una experiencia espiritual única.</p>
-      <button class="button" onclick="openApp()">Abrir la App</button>
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h2>¡Parece que no tienes la app instalada!</h2>
+      <p>Por favor, descárgala desde la Play Store para continuar.</p>
+      <a href="https://play.google.com/store/apps/details?id=com.louislam09.bible">
+        <button>Descargar App</button>
+      </a>
     </div>
-
-    <!-- Modal -->
-    <div id="modal" class="modal">
-      <div class="modal-content">
-        <h2>¡App no encontrada!</h2>
-        <p>
-          No tienes la app instalada. Descárgala ahora para explorar las
-          escrituras.
-        </p>
-        <a
-          href="https://play.google.com/store/apps/details?id=com.louislam09.bible"
-          >Ir a la Play Store</a
-        >
-        <button onclick="closeModal()">Cerrar</button>
-      </div>
-    </div>
-
-    <script>
-      function openApp(isAutoOpen = false) {
-        const deepLink = 'sb-rv60://';
-        const fallbackURL =
-          'https://play.google.com/store/apps/details?id=com.louislam09.bible';
-
-        window.location.href = deepLink;
-
-        if (isAutoOpen) return;
-        setTimeout(() => {
-          showModal();
-        }, 1000);
-      }
-
-      function showModal() {
-        const modal = document.getElementById('modal');
-        modal.classList.add('active');
-      }
-
-      function closeModal() {
-        const modal = document.getElementById('modal');
-        modal.classList.remove('active');
-      }
-
-      window.onload = () => openApp(true);
-    </script>
-  </body>
+  </div>
+</body>
 </html>
