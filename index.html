@@ -6,20 +6,19 @@
   <title>LaEscritura: biblia + audio</title>
   <script>
     function openApp() {
-      const deepLink = "sb-rv60://";
+        const deepLink = "sb-rv60://";
       const fallbackURL = "https://play.google.com/store/apps/details?id=com.louislam09.bible";
 
-      const iframe = document.createElement("iframe");
-      iframe.style.display = "none";
-      iframe.src = deepLink;
-      document.body.appendChild(iframe);
+    // Attempt to open the deep link
+    window.location.href = deepLink;
 
-      setTimeout(() => {
-        window.location.href = fallbackURL;
-      }, 2000);
-    }
+    // Redirect to fallback after a delay
+    setTimeout(() => {
+      window.location.href = fallbackURL;
+    }, 3000); // Wait 3 seconds
+  }
 
-    window.onload = openApp;
+  window.onload = openApp;
   </script>
 </head>
 <body>

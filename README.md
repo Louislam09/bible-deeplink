@@ -18,7 +18,7 @@ This repository hosts a redirection page for deep linking into the **Santa Escri
 ---
 
 ## 🔗 Live Demo  
-Check out the live page: [Santa Escritura Deep Link](#) 
+Check out the live page: [Santa Escritura Deep Link](https://louislam09.github.io/bible-deeplink/) 
 
 ---
 
