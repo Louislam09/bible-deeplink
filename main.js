@@ -65,15 +65,11 @@ openAppButton?.addEventListener("click", () => {
 });
 
 window.onload = () => {
-  // OAuth (e.g. Google) returns here with ?code=… — keep https so the in-app browser can hand the URL to the native app.
-  // Immediate redirect to a custom scheme would break expo-web-browser openAuthSessionAsync.
   const params = new URLSearchParams(window.location.search);
+  // Google OAuth lands on https with ?code=…; forward query to the app scheme so native
+  // openAuthSessionAsync (Linking / ASWebAuthenticationSession) can resolve. Token exchange still uses https redirect_uri.
   if (params.get("code")) {
-    const hint = document.querySelector(".container p");
-    if (hint) {
-      hint.textContent =
-        "Autenticación completada. Esta ventana se cerrará al volver a la app.";
-    }
+    window.location.replace(getDeepLink());
     return;
   }
   const deepLink = getDeepLink();
