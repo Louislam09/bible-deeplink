@@ -1,40 +1,53 @@
-const deepLinkURLs = {
-  default: "sb-rv60://",
-  dashboard: "sb-rv60://dashboard/",
-  settings: "sb-rv60://settings",
-  home: "sb-rv60://home",
-  search: "sb-rv60://search/",
-  concordance: "sb-rv60://concordance",
-  chooseBook: "sb-rv60://chooseBook",
-  chooseChapterNumber: "sb-rv60://chooseChapterNumber",
-  chooseVerseNumber: "sb-rv60://chooseVerseNumber",
-  favorite: "sb-rv60://favorite",
-  downloadManager: "sb-rv60://downloadManager",
-  notes: "sb-rv60://notes",
-  onboarding: "sb-rv60://onboarding",
-  character: "sb-rv60://character",
-  song: "sb-rv60://song",
-  strongSearchEntire: "sb-rv60://searchStrongWordEntire",
-  dictionarySearch: "sb-rv60://dictionary",
-  noteDetail: "sb-rv60://noteDetail",
-  hymn: "sb-rv60://hymn",
-  game: "sb-rv60://game/",
-  chooseGame: "sb-rv60://chooseGame",
+/** Matches bible-2 app.config.ts getScheme() */
+const getAppScheme = () => {
+  const normalized = window.location.pathname.replace(/\/+$/, "");
+  const segments = normalized.split("/").filter(Boolean);
+  const last = segments[segments.length - 1];
+  if (last === "dev") {
+    return "b-rv60-dev";
+  }
+  return "sb-rv60";
+};
+
+const buildDeepLinkURLs = () => {
+  const s = getAppScheme();
+  return {
+    default: `${s}://`,
+    dashboard: `${s}://dashboard/`,
+    settings: `${s}://settings`,
+    home: `${s}://home`,
+    search: `${s}://search/`,
+    concordance: `${s}://concordance`,
+    chooseBook: `${s}://chooseBook`,
+    chooseChapterNumber: `${s}://chooseChapterNumber`,
+    chooseVerseNumber: `${s}://chooseVerseNumber`,
+    favorite: `${s}://favorite`,
+    downloadManager: `${s}://downloadManager`,
+    notes: `${s}://notes`,
+    onboarding: `${s}://onboarding`,
+    character: `${s}://character`,
+    song: `${s}://song`,
+    strongSearchEntire: `${s}://searchStrongWordEntire`,
+    dictionarySearch: `${s}://dictionary`,
+    noteDetail: `${s}://noteDetail`,
+    hymn: `${s}://hymn`,
+    game: `${s}://game/`,
+    chooseGame: `${s}://chooseGame`,
+  };
 };
 
 const modal = document.getElementById("modal");
 const openAppButton = document.getElementById("open-app");
 
 const getDeepLink = () => {
+  const deepLinkURLs = buildDeepLinkURLs();
   const urlParams = new URLSearchParams(window.location.search);
   const screen = urlParams.get("screen") || "default";
 
-  // Capture everything after "?" in the URL
-  const fullQueryString = window.location.search.substring(1); // Remove "?"
+  const fullQueryString = window.location.search.substring(1);
 
   let deepLink = deepLinkURLs[screen] || deepLinkURLs.default;
 
-  // Append full Google OAuth response if it exists
   if (fullQueryString) {
     deepLink += `?${fullQueryString}`;
   }
