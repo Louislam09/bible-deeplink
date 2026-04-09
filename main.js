@@ -65,6 +65,17 @@ openAppButton?.addEventListener("click", () => {
 });
 
 window.onload = () => {
+  // OAuth (e.g. Google) returns here with ?code=… — keep https so the in-app browser can hand the URL to the native app.
+  // Immediate redirect to a custom scheme would break expo-web-browser openAuthSessionAsync.
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("code")) {
+    const hint = document.querySelector(".container p");
+    if (hint) {
+      hint.textContent =
+        "Autenticación completada. Esta ventana se cerrará al volver a la app.";
+    }
+    return;
+  }
   const deepLink = getDeepLink();
   window.location.href = deepLink;
 };
